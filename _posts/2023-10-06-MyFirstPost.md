@@ -4,6 +4,7 @@
     - testContent
   categories:
     - blog
+  toc: true
 ---
 
 
