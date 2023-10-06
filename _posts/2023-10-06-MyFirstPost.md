@@ -1,6 +1,7 @@
 ---
-layout: post
-title: "My First Blog Post"
+  layout: post
+  title: "My First Blog Post"
+  tags: "test"
 ---
 
 
