@@ -16,11 +16,11 @@ minimal_mistakes_skin    : "dark" #"default" # "air", "aqua", "contrast", "dark"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Tanner Marks Blog"
+title                    : "Tanner Marks"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Tanner Marks"
-description              : "Personal Blog"
+description              : ""
 url                      : "https://tanner.marks21.com" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "tmarks21/tanner" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -106,7 +106,7 @@ analytics:
 author:
   name             : "Tanner Marks"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Power Platform Developer"
+  bio              : "I am a Power Platform Developer for CSAA IG. "
   location         : "Central Valley CA."
   email            :
   links:
