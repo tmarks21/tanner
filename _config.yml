@@ -108,7 +108,7 @@ author:
   avatar           : "/assets/images/Tanner-Profile.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "I am a Power Platform Developer for CSAA IG. "
   location         : "Central Valley CA."
-  email            : "tanner@marks21.com"
+  email            : #"tanner@marks21.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
