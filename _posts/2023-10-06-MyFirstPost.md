@@ -1,19 +1,28 @@
 ---
-  title: "My First Blog Post"
+  title: "My First Post"
   tags:
-    - testContent
+    - "My First Content"
   categories:
-    - blog
+    - Blog
   toc: true
 ---
 
 
-# Welcome to my Blog
+# Welcome to my Website. 
 
-**Hello World**, this is my first blog post.
+My Name is Tanner Marks and I am excited to get this website off the ground. I purchase the domain [marks21.com] to setup Development Tenant in Microsoft. I am M365 Power Platform Developer for CSAA IG on the Digital Workplace Service - Application Services Team. We Over the last Year I have developed and Managed 6 Production Solutions. 
 
-Updates to my blog 2:11
+# What this Sites is for
 
-Thanks, 
+* Personal Blogging
+  * Faith
+  * Family
+* Technology Blogging
+  * Power Platform Development Blog
+  * Flutter Development Blog
 
-Tanner Marks
+ # About Me
+ I was born and Raised in Montana. I grew up going to Flathead Lake and Waterskiing, tubing and swimming. I Went to Grand Canyon University for 4 years and graduated with a B.S. in Information and Technology with a Minor in General Business. I am now married and have a daughter. We recently purchased our home in Central Valley C.A.
+
+ 
+
