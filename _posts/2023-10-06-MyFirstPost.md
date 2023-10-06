@@ -1,6 +1,9 @@
 ---
   title: "My First Blog Post"
-  tags: "test"
+  tags:
+    - testContent
+  categories:
+    - blog
 ---
 
 
