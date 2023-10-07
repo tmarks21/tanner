@@ -4,6 +4,7 @@ title: "Tanner Marks"
 excerpt: "M365 Power Platform Developer and Architect"
 toc: true
 author_profile: true
+layout: single
 ---
 
 
