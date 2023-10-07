@@ -3,7 +3,7 @@ permalink: /about/
 title: "About"
 excerpt: "Tanner Marks"
 toc: true
-layout: posts
+layout: archive
 ---
 
 # About Tanner #
