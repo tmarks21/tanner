@@ -3,7 +3,6 @@ permalink: /profile/
 title: "Tanner Marks"
 excerpt: "M365 Power Platform Developer and Architect"
 toc: true
-layout: archive
 author_profile: true
 ---
 
