@@ -155,8 +155,44 @@ This is a output function property with a DateTimeValue Output. The purpose of t
 ### Step 3 - Conversion Function
 Now is the time for the the final solution, There exsists two scenarios in which a user may need to convert timezones. 
 
+    DateAdd(
+    _DateTimeValue,
+    -(_DestinationTimeZone - _SourceTimeZone),
+    TimeUnit.Hours
+	)
+
  1. Convert DateTimeValue to a Specific TimeZone. 
  2. Convert a DateTimeValue from Destination Time Zone to Source Time Zone. 
 
 #### Convert DateTimeValue to Specific TimeZone
+For This Scenario: Need to Convert a Time That may have been saved in Any Time Zone from Local Time Zone to Specific Destination Time Zone. 
 
+So there are probably easier methods for doing this, but this is what I found for our scenarios. 
+
+	// This would be executed like so:
+	// My Time: 11/16 10AM MST // MST = 7
+	// Expected Time: 11/16 9AM PST // PST = 6
+	// ConvertTimeZone(_DateTimeValue,6,7)
+	
+#### Convert DateTime Value
+For this Scenario: Need to Convert a Time so that it is saved in a specific time zone no matter the local time zone of the user who is saving it. 
+
+    // This would be executed like so: 
+    // My Time 11/16 10AM MST // MST = 7
+    // Expected Time to Save: 11/16 10AM PST // PST = 6
+    // Expected MST Time to Accound for Offset: 11AM MST // MST = 7
+    // ConvertTimeZone(_DateTimeValue,7,6)
+
+### Extra : US World Clocks
+For this, I thought it would be cool to show a gallery that shows what time it is in each time zone based on a specific time. 
+
+    AddColumns(
+	    Filter(
+	        Self.TZT,DST = Self.isDST(Coalesce(_DateTimeValue,Now()))
+	    ),
+	    "convertedTime",
+	    Self.ConvertTimeZone(_DateTimeValue,Value,_SourceTimeZone)
+	)
+
+## Final Thoughts
+Timezones and Time functions in powerapps seems like it would be an easy solve, but in reality this took about 3 days to come to a solution that should have been a little easier. 
