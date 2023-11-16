@@ -1,3 +1,13 @@
+---
+  title: "Time Zone In Power Apps"
+  tags:
+    - "Power Apps"
+    - "M365 Power Platform"
+    - "Development"
+  categories:
+    - Development
+  toc: true
+---
 # Time Zones in Power Apps
 In 2023, More and More companies are taking advantage of the Distributed workforce and being able to hire in almost all 50 States of the US. This represents a problem in Power Apps when you have multiple users using a app in different time zones. This is not inherintely a problem in Power Apps as it has the ability to automatically adjust the time from UTC to whatever the user's local settings are. But it becomes a problem when the Business requires that the App and and Date Time Value are saved in a Specific Time Zone. 
 
