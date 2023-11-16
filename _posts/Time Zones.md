@@ -18,4 +18,145 @@ This problem sent me down about three days of investigation, troubleshooting and
  3. You cannot select a Specific Locale Setting for the user or set default. 
  
 ## Solution
-When I first began work
+When I first began working on this issue, I had assumed it was going to be an easy fix to make it dynamic, I was incredibly wrong. For this solution I am building with a Custom Component within a Component Library. For this example I am only solving for U.S Time Zones, but I believe it could be expanded to other time zones. 
+
+### Step 1  - Defining Time Zones
+One Issue I ran into right away was that there is no way to truly get a Named Time zone and view other timezones other than your own, so first step was to define the Time Zones. 
+
+In the Component I defined an Output Property with a Record Data Type to host the Time zone Definitions.
+This Property is called **Definitions or Def for short**
+
+    {
+            Pacific:{
+                Standard:8,
+                Daylight:7,
+                Label:"Pacific"
+            },
+            Mountain:{
+                Standard:7,
+                Daylight:6,
+                Label:"Mountain"
+            },
+            Central:{
+                Standard:6,
+                Daylight:5,
+                Label:"Central"
+            },
+            Eastern:{
+                Standard:5,
+                Daylight:4,
+                Label:"Eastern"
+            }
+    }
+
+Now that **Definitions** has been defined, we can define a Output Property with a Table Data Type called **Time Zone Tables or TZT  for short**
+
+    With({t:Self.Def},
+            Table(
+                {
+                    Label:t.Pacific.Label,
+                    DST: false,
+                    Value:t.Pacific.Standard
+                },
+                {
+                    Label:t.Pacific.Label,
+                    DST: true,
+                    Value:t.Pacific.Daylight
+                },
+                {
+                    Label:t.Mountain.Label,
+                    DST: false,
+                    Value:t.Mountain.Standard
+                },
+                {
+                    Label:t.Mountain.Label,
+                    DST: true,
+                    Value:t.Mountain.Daylight
+                },
+                {
+                    Label:t.Central.Label,
+                    DST: false,
+                    Value:t.Central.Standard
+                },
+                {
+                    Label:t.Central.Label,
+                    DST: true,
+                    Value:t.Central.Daylight
+                },
+                {
+                    Label:t.Eastern.Label,
+                    DST: false,
+                    Value:t.Eastern.Standard
+                },
+                {
+                    Label:t.Eastern.Label,
+                    DST: true,
+                    Value:t.Eastern.Daylight
+                }
+            )
+          )
+
+Now we have a Record Property that we can use as a enum to call specific Time Zones, and we have Table Property that can preform lookups and etc. 
+
+### Step 2 - Helper Functions
+Now that we have everything defined, I built a few helper functions that can be called to ensure that everything is consistent. 
+
+ 1. IsDayLightSavingsTime()
+ 2. GetMyTimeZoneName()
+ 3. GetTimeZoneOffset()
+ 4. ConvertToUTC()
+
+#### IsDayLightSavingsTime(_DateTimeValue)
+This is an Output Function Property with a Boolean Output. The Purpose of this function is to test a DateTimeValue's Current Offset Value to see if it falls within daylight Savings Time or Standard Time. 
+
+    Switch(TimeZoneOffset(_DateTimeValue),
+		TimeZoneOffset(Date(Year(_DateTimeValue),1,1)),false,
+		TimeZoneOffset(Date(Year(_DateTimeValue),8,1)),true
+	)
+
+#### GetMyTimeZoneName()
+This is an Output Function Property with Text Output. The Purpose of this function is to return a Text Value that display what time zone they are in in the Display Name format. 
+
+	    If(
+			Self.isDST(Now()),
+		    //Switch based on the Daylight Savings time Values for UTC Offset
+		    Switch(TimeZoneOffset()/60,
+			    4,"Eastern",
+			    5,"Central",
+			    6,"Mountain",
+			    7,"Pacific"
+		    )
+		    &" Daylight Time"
+		    ,
+
+		    //Switch Based on Standard time values for UTC Offset
+		    Switch(TimeZoneOffset()/60,
+			    5,"Eastern",
+			    6,"Central",
+			    7,"Mountain",
+			    8,"Pacific"
+		    )
+		    &" Standard Time"
+	)
+#### GetTimeZoneOffset(_TimeZone)
+This is a output Function Property with a Number Output. The Purpose of this function is to supply a Text Value that can be lookedup in the TZT to retreive the current Offset based on DST. Optionally can supply the text value "local" to retrieve local time offset. 
+
+    If(
+	    _TimeZone = "local",
+	    TimeZoneOffset()/60,
+	    LookUp(Self.TZT,Label=_TimeZone&&DST = Self.isDST(Now()) ,Value)
+	)
+
+#### ConvertToUTC(_DateTimeValue)
+This is a output function property with a DateTimeValue Output. The purpose of this function is to get the UTC based on the DateTimeValue Supplied. 
+
+    DateAdd(_DateTimeValue,TimeZoneOffset(_DateTimeValue)/60,TimeUnit.Hours)
+
+### Step 3 - Conversion Function
+Now is the time for the the final solution, There exsists two scenarios in which a user may need to convert timezones. 
+
+ 1. Convert DateTimeValue to a Specific TimeZone. 
+ 2. Convert a DateTimeValue from Destination Time Zone to Source Time Zone. 
+
+#### Convert DateTimeValue to Specific TimeZone
+
