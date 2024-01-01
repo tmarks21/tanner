@@ -48,5 +48,11 @@ Hello, I am Tanner Marks, I am M365 Power Platform Developer with profeciencies 
 >### Microsoft Power Platform Fundamentals ###
 >** July 10, 2021
 >
->Proficiency in building and administering Power Platform Applications. Ability to create Automated Workflow using Power Automate. Understanding of PowerBI and its application as a Business Intelligence Tool. 
+>Proficiency in building and administering Power Platform Applications. Ability to create Automated Workflow using Power Automate. Understanding of PowerBI and its application as a Business Intelligence Tool.
+>### Microsoft Power Platform App Maker Associate###
+>** January, 2024
+>
+>Design business solutions
+Analyze and visualize data
+Create business solutions
 
