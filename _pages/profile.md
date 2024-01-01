@@ -52,7 +52,5 @@ Hello, I am Tanner Marks, I am M365 Power Platform Developer with profeciencies 
 >### Microsoft Power Platform App Maker Associate###
 >** January, 2024
 >
->Design business solutions
-Analyze and visualize data
-Create business solutions
+>Design business solutions, Analyze and visualize data, Create business solutions
 
